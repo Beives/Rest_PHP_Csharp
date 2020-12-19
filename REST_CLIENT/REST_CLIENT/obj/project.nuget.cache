@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "CMPL8sOIfrJ8ODky4tHanx1Nbq6jTG+8pTQ1qUMUsVcHlXj2Lww5ZJje/b4W6jRLwTHgbXbziRb+SbuBQoIzyQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\beive\\Desktop\\PhpRoot\\Rest\\REST_CLIENT\\REST_CLIENT\\REST_CLIENT.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\beive\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512"
+  ],
+  "logs": []
+}
