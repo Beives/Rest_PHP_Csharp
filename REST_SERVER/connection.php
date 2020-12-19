@@ -4,7 +4,7 @@ Class DatabaseObject{
 
     var $db_user = "root";
     var $db_pass = "";
-    var $db_dbname = "";
+    var $db_dbname = "rest_guitars";
     var $db_host = "localhost";
     var $conn;
 

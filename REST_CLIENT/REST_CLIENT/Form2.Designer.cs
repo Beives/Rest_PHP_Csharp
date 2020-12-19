@@ -30,12 +30,12 @@ namespace REST_CLIENT
         private void InitializeComponent()
         {
             this.listaBtn = new System.Windows.Forms.Button();
-            this.listazasListBox = new System.Windows.Forms.ListBox();
             this.hozzaadBtn = new System.Windows.Forms.Button();
             this.modositasBtn = new System.Windows.Forms.Button();
             this.torlesBtn = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel = new System.Windows.Forms.Panel();
             this.hurokLabel = new System.Windows.Forms.Label();
+            this.idListaBtn = new System.Windows.Forms.Button();
             this.tipusTxtBox = new System.Windows.Forms.TextBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.hangszedoTxtBox = new System.Windows.Forms.TextBox();
@@ -50,9 +50,10 @@ namespace REST_CLIENT
             this.markaLabel = new System.Windows.Forms.Label();
             this.idLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.deleteIdLabel = new System.Windows.Forms.Label();
             this.deleteIdNumeric = new System.Windows.Forms.NumericUpDown();
-            this.panel1.SuspendLayout();
+            this.deleteIdLabel = new System.Windows.Forms.Label();
+            this.listView = new System.Windows.Forms.ListView();
+            this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bundokNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idNumeric)).BeginInit();
@@ -62,21 +63,12 @@ namespace REST_CLIENT
             // 
             // listaBtn
             // 
-            this.listaBtn.Location = new System.Drawing.Point(385, 332);
+            this.listaBtn.Location = new System.Drawing.Point(480, 332);
             this.listaBtn.Name = "listaBtn";
             this.listaBtn.Size = new System.Drawing.Size(150, 50);
             this.listaBtn.TabIndex = 9;
             this.listaBtn.Text = "Listázás";
             this.listaBtn.UseVisualStyleBackColor = true;
-            // 
-            // listazasListBox
-            // 
-            this.listazasListBox.FormattingEnabled = true;
-            this.listazasListBox.ItemHeight = 15;
-            this.listazasListBox.Location = new System.Drawing.Point(336, 21);
-            this.listazasListBox.Name = "listazasListBox";
-            this.listazasListBox.Size = new System.Drawing.Size(254, 289);
-            this.listazasListBox.TabIndex = 8;
             // 
             // hozzaadBtn
             // 
@@ -89,7 +81,7 @@ namespace REST_CLIENT
             // 
             // modositasBtn
             // 
-            this.modositasBtn.Location = new System.Drawing.Point(14, 23);
+            this.modositasBtn.Location = new System.Drawing.Point(14, 75);
             this.modositasBtn.Name = "modositasBtn";
             this.modositasBtn.Size = new System.Drawing.Size(75, 23);
             this.modositasBtn.TabIndex = 11;
@@ -105,28 +97,29 @@ namespace REST_CLIENT
             this.torlesBtn.Text = "Törlés";
             this.torlesBtn.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // panel
             // 
-            this.panel1.Controls.Add(this.hurokLabel);
-            this.panel1.Controls.Add(this.tipusTxtBox);
-            this.panel1.Controls.Add(this.numericUpDown1);
-            this.panel1.Controls.Add(this.hangszedoTxtBox);
-            this.panel1.Controls.Add(this.bundokNumeric);
-            this.panel1.Controls.Add(this.markaTxtBox);
-            this.panel1.Controls.Add(this.idNumeric);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.tipusLabel);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.bundokLabel);
-            this.panel1.Controls.Add(this.formaLabel);
-            this.panel1.Controls.Add(this.markaLabel);
-            this.panel1.Controls.Add(this.idLabel);
-            this.panel1.Controls.Add(this.hozzaadBtn);
-            this.panel1.Controls.Add(this.modositasBtn);
-            this.panel1.Location = new System.Drawing.Point(12, 21);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(297, 289);
-            this.panel1.TabIndex = 13;
+            this.panel.Controls.Add(this.hurokLabel);
+            this.panel.Controls.Add(this.idListaBtn);
+            this.panel.Controls.Add(this.tipusTxtBox);
+            this.panel.Controls.Add(this.numericUpDown1);
+            this.panel.Controls.Add(this.hangszedoTxtBox);
+            this.panel.Controls.Add(this.bundokNumeric);
+            this.panel.Controls.Add(this.markaTxtBox);
+            this.panel.Controls.Add(this.idNumeric);
+            this.panel.Controls.Add(this.textBox1);
+            this.panel.Controls.Add(this.tipusLabel);
+            this.panel.Controls.Add(this.label5);
+            this.panel.Controls.Add(this.bundokLabel);
+            this.panel.Controls.Add(this.formaLabel);
+            this.panel.Controls.Add(this.markaLabel);
+            this.panel.Controls.Add(this.idLabel);
+            this.panel.Controls.Add(this.hozzaadBtn);
+            this.panel.Controls.Add(this.modositasBtn);
+            this.panel.Location = new System.Drawing.Point(12, 21);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(297, 289);
+            this.panel.TabIndex = 13;
             // 
             // hurokLabel
             // 
@@ -136,6 +129,15 @@ namespace REST_CLIENT
             this.hurokLabel.Size = new System.Drawing.Size(76, 15);
             this.hurokLabel.TabIndex = 25;
             this.hurokLabel.Text = "Húrok száma";
+            // 
+            // idListaBtn
+            // 
+            this.idListaBtn.Location = new System.Drawing.Point(14, 14);
+            this.idListaBtn.Name = "idListaBtn";
+            this.idListaBtn.Size = new System.Drawing.Size(105, 40);
+            this.idListaBtn.TabIndex = 15;
+            this.idListaBtn.Text = "Lekérés ID-vel";
+            this.idListaBtn.UseVisualStyleBackColor = true;
             // 
             // tipusTxtBox
             // 
@@ -250,6 +252,13 @@ namespace REST_CLIENT
             this.panel2.Size = new System.Drawing.Size(297, 50);
             this.panel2.TabIndex = 14;
             // 
+            // deleteIdNumeric
+            // 
+            this.deleteIdNumeric.Location = new System.Drawing.Point(174, 14);
+            this.deleteIdNumeric.Name = "deleteIdNumeric";
+            this.deleteIdNumeric.Size = new System.Drawing.Size(100, 23);
+            this.deleteIdNumeric.TabIndex = 26;
+            // 
             // deleteIdLabel
             // 
             this.deleteIdLabel.AutoSize = true;
@@ -259,26 +268,28 @@ namespace REST_CLIENT
             this.deleteIdLabel.TabIndex = 26;
             this.deleteIdLabel.Text = "ID";
             // 
-            // deleteIdNumeric
+            // listView
             // 
-            this.deleteIdNumeric.Location = new System.Drawing.Point(174, 14);
-            this.deleteIdNumeric.Name = "deleteIdNumeric";
-            this.deleteIdNumeric.Size = new System.Drawing.Size(100, 23);
-            this.deleteIdNumeric.TabIndex = 26;
+            this.listView.HideSelection = false;
+            this.listView.Location = new System.Drawing.Point(322, 21);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(450, 300);
+            this.listView.TabIndex = 15;
+            this.listView.UseCompatibleStateImageBehavior = false;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 411);
+            this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.listView);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.listaBtn);
-            this.Controls.Add(this.listazasListBox);
             this.Name = "Form2";
             this.Text = "Logged in window";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bundokNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idNumeric)).EndInit();
@@ -292,11 +303,10 @@ namespace REST_CLIENT
         #endregion
 
         private System.Windows.Forms.Button listaBtn;
-        private System.Windows.Forms.ListBox listazasListBox;
         private System.Windows.Forms.Button hozzaadBtn;
         private System.Windows.Forms.Button modositasBtn;
         private System.Windows.Forms.Button torlesBtn;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Label hurokLabel;
         private System.Windows.Forms.TextBox tipusTxtBox;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
@@ -314,5 +324,7 @@ namespace REST_CLIENT
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.NumericUpDown deleteIdNumeric;
         private System.Windows.Forms.Label deleteIdLabel;
+        private System.Windows.Forms.Button idListaBtn;
+        private System.Windows.Forms.ListView listView;
     }
 }

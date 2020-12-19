@@ -33,16 +33,19 @@ namespace REST_CLIENT
             this.JelszoLabel = new System.Windows.Forms.Label();
             this.usernameTxtBox = new System.Windows.Forms.TextBox();
             this.passwordTxtBox = new System.Windows.Forms.TextBox();
-            this.listazasListBox = new System.Windows.Forms.ListBox();
             this.registerBtn = new System.Windows.Forms.Button();
             this.loginBtn = new System.Windows.Forms.Button();
             this.listaBtn = new System.Windows.Forms.Button();
+            this.idListaBtn = new System.Windows.Forms.Button();
+            this.IdNumeric = new System.Windows.Forms.NumericUpDown();
+            this.listView = new System.Windows.Forms.ListView();
+            ((System.ComponentModel.ISupportInitialize)(this.IdNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // FelhasznaloLabel
             // 
             this.FelhasznaloLabel.AutoSize = true;
-            this.FelhasznaloLabel.Location = new System.Drawing.Point(12, 59);
+            this.FelhasznaloLabel.Location = new System.Drawing.Point(12, 88);
             this.FelhasznaloLabel.Name = "FelhasznaloLabel";
             this.FelhasznaloLabel.Size = new System.Drawing.Size(87, 15);
             this.FelhasznaloLabel.TabIndex = 0;
@@ -59,7 +62,7 @@ namespace REST_CLIENT
             // 
             // usernameTxtBox
             // 
-            this.usernameTxtBox.Location = new System.Drawing.Point(135, 56);
+            this.usernameTxtBox.Location = new System.Drawing.Point(135, 85);
             this.usernameTxtBox.Name = "usernameTxtBox";
             this.usernameTxtBox.Size = new System.Drawing.Size(100, 23);
             this.usernameTxtBox.TabIndex = 2;
@@ -70,15 +73,6 @@ namespace REST_CLIENT
             this.passwordTxtBox.Name = "passwordTxtBox";
             this.passwordTxtBox.Size = new System.Drawing.Size(100, 23);
             this.passwordTxtBox.TabIndex = 3;
-            // 
-            // listazasListBox
-            // 
-            this.listazasListBox.FormattingEnabled = true;
-            this.listazasListBox.ItemHeight = 15;
-            this.listazasListBox.Location = new System.Drawing.Point(333, 22);
-            this.listazasListBox.Name = "listazasListBox";
-            this.listazasListBox.Size = new System.Drawing.Size(254, 289);
-            this.listazasListBox.TabIndex = 4;
             // 
             // registerBtn
             // 
@@ -100,29 +94,58 @@ namespace REST_CLIENT
             // 
             // listaBtn
             // 
-            this.listaBtn.Location = new System.Drawing.Point(386, 333);
+            this.listaBtn.Location = new System.Drawing.Point(389, 333);
             this.listaBtn.Name = "listaBtn";
-            this.listaBtn.Size = new System.Drawing.Size(150, 50);
+            this.listaBtn.Size = new System.Drawing.Size(100, 40);
             this.listaBtn.TabIndex = 7;
             this.listaBtn.Text = "Listázás";
             this.listaBtn.UseVisualStyleBackColor = true;
             this.listaBtn.Click += new System.EventHandler(this.listaBtn_Click);
             // 
+            // idListaBtn
+            // 
+            this.idListaBtn.Location = new System.Drawing.Point(543, 333);
+            this.idListaBtn.Name = "idListaBtn";
+            this.idListaBtn.Size = new System.Drawing.Size(100, 40);
+            this.idListaBtn.TabIndex = 8;
+            this.idListaBtn.Text = "Lekérés ID-vel";
+            this.idListaBtn.UseVisualStyleBackColor = true;
+            this.idListaBtn.Click += new System.EventHandler(this.idListaBtn_Click);
+            // 
+            // IdNumeric
+            // 
+            this.IdNumeric.Location = new System.Drawing.Point(649, 344);
+            this.IdNumeric.Name = "IdNumeric";
+            this.IdNumeric.Size = new System.Drawing.Size(100, 23);
+            this.IdNumeric.TabIndex = 9;
+            // 
+            // listView
+            // 
+            this.listView.HideSelection = false;
+            this.listView.Location = new System.Drawing.Point(302, 12);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(450, 300);
+            this.listView.TabIndex = 10;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 411);
+            this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.listView);
+            this.Controls.Add(this.IdNumeric);
+            this.Controls.Add(this.idListaBtn);
             this.Controls.Add(this.listaBtn);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.registerBtn);
-            this.Controls.Add(this.listazasListBox);
             this.Controls.Add(this.passwordTxtBox);
             this.Controls.Add(this.usernameTxtBox);
             this.Controls.Add(this.JelszoLabel);
             this.Controls.Add(this.FelhasznaloLabel);
             this.Name = "Form1";
             this.Text = "Guest window";
+            ((System.ComponentModel.ISupportInitialize)(this.IdNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,10 +157,12 @@ namespace REST_CLIENT
         private System.Windows.Forms.Label JelszoLabel;
         private System.Windows.Forms.TextBox usernameTxtBox;
         private System.Windows.Forms.TextBox passwordTxtBox;
-        private System.Windows.Forms.ListBox listazasListBox;
         private System.Windows.Forms.Button registerBtn;
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.Button listaBtn;
+        private System.Windows.Forms.Button idListaBtn;
+        private System.Windows.Forms.NumericUpDown IdNumeric;
+        private System.Windows.Forms.ListView listView;
     }
 }
 
