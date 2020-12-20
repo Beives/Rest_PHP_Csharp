@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using RestSharp;
 using REST_CLIENT.Classes;
+using RestSharp.Serialization.Json;
+
 
 namespace REST_CLIENT
 {
     public partial class registerForm : Form
     {
+        JsonDeserializer deserializer = new JsonDeserializer();
+
         public registerForm()
         {
             InitializeComponent();
@@ -39,36 +39,21 @@ namespace REST_CLIENT
                         UserName = userName,
                         Password = password
                     });
-                    
 
-                    IRestResponse<List<string>> restResponse = client.Execute<List<string>>(request);
-
-                    foreach (string status in restResponse.Data)
-                    {
-                        MessageBox.Show(status);
-                    }
-
-                    /*
-                     IRestResponse response = client.Execute(request);
-
-                    string[] code = response.Content.Split(',')[0].Split(':');
-                    string[] message = response.Content.Split(',')[1].Split(':');
-
-                    switch (code[1])
+                    IRestResponse response = client.Execute(request);
+                    Classes.ResponseStatus resp = deserializer.Deserialize<Classes.ResponseStatus>(response);
+                    switch (resp.status)
                     {
                         case "1":
-                            MessageBox.Show(message[1],"Siker", MessageBoxButtons.OK);
+                            MessageBox.Show(resp.status_message,"Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
                             break;
                         case "0":
-                            MessageBox.Show(message[1], "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(resp.status_message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                         default:
                             break;
                     }
-                    */
-
-                    this.Close();
-
                 }
             }
             catch (Exception ex)

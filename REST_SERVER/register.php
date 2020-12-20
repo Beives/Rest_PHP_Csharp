@@ -13,11 +13,11 @@
 
         $checkQuery = "SELECT username FROM users";
         $checkFailed = false;
+        $result = mysqli_query($conn,$checkQuery);
 
         while ($row = mysqli_fetch_array($result)) {
             if ($row['username'] == $username) {
                 $checkFailed = true;
-                break;
             } 
         }
         if ($checkFailed) {
@@ -27,8 +27,6 @@
             );
         }else{
             $query = "INSERT INTO users SET username='$username', password ='$password'";
-            $result = mysqli_query($conn,$checkQuery);
-
             
             if (mysqli_query($conn, $query)) {
                 $response=array(

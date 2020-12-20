@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using RestSharp;
 using REST_CLIENT.Classes;
+using RestSharp.Serialization.Json;
+
 
 namespace REST_CLIENT
 {
@@ -14,6 +12,8 @@ namespace REST_CLIENT
     {
         string URL = "http://localhost/Rest/REST_SERVER/";
         string ROUTE = "index.php";
+        JsonDeserializer deserializer = new JsonDeserializer();
+
         public Form2()
         {
             InitializeComponent();
@@ -75,7 +75,11 @@ namespace REST_CLIENT
                     var request = new RestRequest(ROUTE + "/{id}", Method.DELETE);
                     request.AddParameter("id", id);
                     IRestResponse response = client.Execute(request);
-                    fillListView();
+                    Classes.ResponseStatus resp = deserializer.Deserialize<Classes.ResponseStatus>(response);
+                    if (resp.status == "0")
+                        MessageBox.Show(resp.status_message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else
+                        fillListView();
 
                 }
                 catch (Exception ex)
@@ -86,23 +90,38 @@ namespace REST_CLIENT
         }
         private void hozzaadBtn_Click(object sender, EventArgs e)
         {
-            var client = new RestClient(URL);
-            var request = new RestRequest(ROUTE, Method.POST);
 
-            request.RequestFormat = DataFormat.Json;
-
-            request.AddBody(new Guitar
+            if (string.IsNullOrWhiteSpace(markaTxtBox.Text) ||
+                string.IsNullOrWhiteSpace(formaTxtBox.Text) ||
+                string.IsNullOrWhiteSpace(hangszedoTxtBox.Text) ||
+                string.IsNullOrWhiteSpace(tipusTxtBox.Text) ||
+                bundokNumeric.Value == 0 || hurokNumeric.Value == 0
+                )
             {
-                Marka = markaTxtBox.Text,
-                Bundok = (int)bundokNumeric.Value,
-                Forma = formaTxtBox.Text,
-                Hangszedo = hangszedoTxtBox.Text,
-                Hurok = (int)hurokNumeric.Value,
-                Tipus = tipusTxtBox.Text
-            });
+                MessageBox.Show("Minden mezőt ki kell tölteni", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                var client = new RestClient(URL);
+                var request = new RestRequest(ROUTE, Method.POST);
 
-            IRestResponse<List<string>> restResponse = client.Execute<List<string>>(request);
-            fillListView();
+                request.RequestFormat = DataFormat.Json;
+                request.AddBody(new Guitar
+                {
+                    Marka = markaTxtBox.Text,
+                    Bundok = (int)bundokNumeric.Value,
+                    Forma = formaTxtBox.Text,
+                    Hangszedo = hangszedoTxtBox.Text,
+                    Hurok = (int)hurokNumeric.Value,
+                    Tipus = tipusTxtBox.Text
+                });
+                IRestResponse response = client.Execute(request);
+                Classes.ResponseStatus resp = deserializer.Deserialize<Classes.ResponseStatus>(response);
+                if (resp.status == "0")
+                    MessageBox.Show(resp.status_message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                    fillListView();
+            }            
         }
         private void fillListView()
         {

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using RestSharp;
+using RestSharp.Serialization.Json;
 using REST_CLIENT.Classes;
 
 namespace REST_CLIENT
@@ -16,6 +11,8 @@ namespace REST_CLIENT
     {
         String URL = "http://localhost/Rest/REST_SERVER/";
         String ROUTE = "index.php";
+        JsonDeserializer deserializer = new JsonDeserializer();
+
         public Form1()
         {
             InitializeComponent();
@@ -127,11 +124,9 @@ namespace REST_CLIENT
             });
 
             IRestResponse response = client.Execute(request);
+            Classes.ResponseStatus resp = deserializer.Deserialize<Classes.ResponseStatus>(response);
 
-            string[] code = response.Content.Split(',')[0].Split(':');
-            string[] message = response.Content.Split(',')[1].Split(':');
-
-            switch (code[1])
+            switch (resp.status)
             {
                 case "1":
                     Form2 form = new Form2();
@@ -140,7 +135,7 @@ namespace REST_CLIENT
                     this.Close();
                     break;
                 case "0":
-                    MessageBox.Show(message[1], "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(resp.status_message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 default:
                     break;
