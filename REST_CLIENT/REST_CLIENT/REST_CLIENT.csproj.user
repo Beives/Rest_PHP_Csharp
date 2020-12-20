@@ -7,5 +7,11 @@
     <Compile Update="Form2.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="modositoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="registerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

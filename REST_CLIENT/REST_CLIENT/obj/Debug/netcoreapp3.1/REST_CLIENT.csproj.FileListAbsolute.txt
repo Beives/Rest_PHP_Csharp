@@ -16,3 +16,5 @@ C:\Users\beive\Desktop\PhpRoot\Rest\REST_CLIENT\REST_CLIENT\obj\Debug\netcoreapp
 C:\Users\beive\Desktop\PhpRoot\Rest\REST_CLIENT\REST_CLIENT\obj\Debug\netcoreapp3.1\REST_CLIENT.dll
 C:\Users\beive\Desktop\PhpRoot\Rest\REST_CLIENT\REST_CLIENT\obj\Debug\netcoreapp3.1\REST_CLIENT.pdb
 C:\Users\beive\Desktop\PhpRoot\Rest\REST_CLIENT\REST_CLIENT\obj\Debug\netcoreapp3.1\REST_CLIENT.genruntimeconfig.cache
+C:\Users\beive\Desktop\PhpRoot\Rest\REST_CLIENT\REST_CLIENT\obj\Debug\netcoreapp3.1\REST_CLIENT.registerForm.resources
+C:\Users\beive\Desktop\PhpRoot\Rest\REST_CLIENT\REST_CLIENT\obj\Debug\netcoreapp3.1\REST_CLIENT.Módosítás.resources

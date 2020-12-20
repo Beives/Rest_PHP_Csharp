@@ -19,6 +19,9 @@ namespace REST_CLIENT
         public Form1()
         {
             InitializeComponent();
+
+            passwordTxtBox.PasswordChar = '*';
+
             listView.View = View.Details;
             listView.Columns.Add("ID");
             listView.Columns.Add("Márka");
@@ -36,6 +39,8 @@ namespace REST_CLIENT
             {
                 var client = new RestClient(URL);
                 var request = new RestRequest(ROUTE, Method.GET);
+
+                
 
                 IRestResponse<List<Guitar>> response = client.Execute<List<Guitar>>(request);
                 foreach (Guitar gt in response.Data)
@@ -62,8 +67,14 @@ namespace REST_CLIENT
                     var request = new RestRequest(ROUTE + "?id=" + id, Method.GET);
 
                     IRestResponse<List<Guitar>> response = client.Execute<List<Guitar>>(request);
+                        
                     foreach (Guitar gt in response.Data)
                     {
+                        if (gt == null)
+                        {
+                            MessageBox.Show("Nincs ilyen id", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            break;
+                        }
                         addListItem(gt);
                     }
                 }
@@ -89,6 +100,56 @@ namespace REST_CLIENT
                     continue;
                 listView.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
             }
+        }
+
+        private void registerBtn_Click(object sender, EventArgs e)
+        {
+            registerForm form = new registerForm();
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
+        }
+
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+            var client = new RestClient(URL);
+            var request = new RestRequest("/login.php", Method.POST);
+
+            string userName = usernameTxtBox.Text;
+            string password = passwordTxtBox.Text;
+
+            request.RequestFormat = DataFormat.Json;
+
+            request.AddBody(new User
+            {
+                UserName = userName,
+                Password = password
+            });
+
+            IRestResponse response = client.Execute(request);
+
+            string[] code = response.Content.Split(',')[0].Split(':');
+            string[] message = response.Content.Split(',')[1].Split(':');
+
+            switch (code[1])
+            {
+                case "1":
+                    Form2 form = new Form2();
+                    this.Hide();
+                    form.ShowDialog();
+                    this.Close();
+                    break;
+                case "0":
+                    MessageBox.Show(message[1], "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

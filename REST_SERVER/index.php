@@ -17,15 +17,16 @@
             break;
 
         case 'POST':
-            post_dummy();
+            add_guitar();
             break;
 
         case 'PUT':
-            put_dummy();
+            update_guitar();
             break;
 
         case 'DELETE':
-            delete_dummy();
+            $id=intval($_GET["id"]);
+            delete_guitar($id);
             break;
 
         default:
@@ -54,11 +55,96 @@
         header('Content-Type: application/json');
         echo json_encode($response);
     }
-    function put_dummy(){
-        
+    function add_guitar(){
+        global $conn;
+        $data = json_decode(file_get_contents('php://input'), true);
+        $gitar_marka = $data["Marka"];
+        $gitar_forma = $data["Forma"];
+        $gitar_bundok = $data["Bundok"];
+        $gitar_hangszedo = $data["Hangszedo"];
+        $gitar_hurok = $data["Hurok"];
+        $gitar_tipus = $data["Tipus"];
+
+        $query="INSERT INTO gitar SET 
+        marka = '$gitar_marka',
+        forma = '$gitar_forma',
+        bundok = '$gitar_bundok',
+        hangszedo = '$gitar_hangszedo',
+        hurok = '$gitar_hurok',
+        tipus = '$gitar_tipus'";
+
+        if(mysqli_query($conn, $query))
+        {
+           $response=array(
+                 'status' => 1,
+                 'status_message' =>'Gitar hozzaadva.'
+                  );
+        }
+        else
+        {
+           $response=array(
+                 'status' => 0,
+                 'status_message' =>'Hozzaadas fail.'
+                 );
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response); //response with header 
     }
-    function delete_dummy(){
-        
+    function update_guitar(){
+        global $conn;
+        $data = json_decode(file_get_contents('php://input'), true);
+        $gitar_marka = $data["Marka"];
+        $gitar_forma = $data["Forma"];
+        $gitar_bundok = $data["Bundok"];
+        $gitar_hangszedo = $data["Hangszedo"];
+        $gitar_hurok = $data["Hurok"];
+        $gitar_tipus = $data["Tipus"];
+        $gitar_id = $data["Id"];
+
+        $query="UPDATE gitar SET 
+        marka = '$gitar_marka',
+        forma = '$gitar_forma',
+        bundok = '$gitar_bundok',
+        hangszedo = '$gitar_hangszedo',
+        hurok = '$gitar_hurok',
+        tipus = '$gitar_tipus'
+        WHERE id =".$gitar_id;
+        if(mysqli_query($conn, $query))
+        {
+        $response=array(
+                'status' => 1,
+                'status_message' =>'Gitar modositva.'
+                );
+        }
+        else
+        {
+        $response=array(
+                'status' => 0,
+                'status_message' =>'Modositas sikertelen.'
+                );
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response); //response with header 
+    }
+    function delete_guitar($id){
+        global $conn;
+        $query = "DELETE FROM gitar WHERE id=".$id;
+        if(mysqli_query($conn, $query))
+        {
+            $response=array(
+            'status' => 1,
+            'status_message' =>'Sikeres torles.'
+            );
+        }
+        else
+        {
+            $response=array(
+                'status' => 0,
+                'status_message' =>'Torles hiba.'
+            );
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 
 ?>

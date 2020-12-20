@@ -39,6 +39,7 @@ namespace REST_CLIENT
             this.idListaBtn = new System.Windows.Forms.Button();
             this.IdNumeric = new System.Windows.Forms.NumericUpDown();
             this.listView = new System.Windows.Forms.ListView();
+            this.exitBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.IdNumeric)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,15 +83,17 @@ namespace REST_CLIENT
             this.registerBtn.TabIndex = 5;
             this.registerBtn.Text = "Regisztráció";
             this.registerBtn.UseVisualStyleBackColor = true;
+            this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(205, 222);
+            this.loginBtn.Location = new System.Drawing.Point(187, 222);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(91, 32);
             this.loginBtn.TabIndex = 6;
             this.loginBtn.Text = "Bejelentkezés";
             this.loginBtn.UseVisualStyleBackColor = true;
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
             // listaBtn
             // 
@@ -128,11 +131,22 @@ namespace REST_CLIENT
             this.listView.TabIndex = 10;
             this.listView.UseCompatibleStateImageBehavior = false;
             // 
+            // exitBtn
+            // 
+            this.exitBtn.Location = new System.Drawing.Point(12, 376);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(75, 23);
+            this.exitBtn.TabIndex = 11;
+            this.exitBtn.Text = "Kilépés";
+            this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.IdNumeric);
             this.Controls.Add(this.idListaBtn);
@@ -163,6 +177,7 @@ namespace REST_CLIENT
         private System.Windows.Forms.Button idListaBtn;
         private System.Windows.Forms.NumericUpDown IdNumeric;
         private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.Button exitBtn;
     }
 }
 

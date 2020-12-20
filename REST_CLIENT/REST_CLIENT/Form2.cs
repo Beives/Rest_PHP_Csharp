@@ -28,22 +28,7 @@ namespace REST_CLIENT
         }
         private void listaBtn_Click(object sender, EventArgs e)
         {
-            listView.Items.Clear();
-            try
-            {
-                var client = new RestClient(URL);
-                var request = new RestRequest(ROUTE, Method.GET);
-
-                IRestResponse<List<Guitar>> response = client.Execute<List<Guitar>>(request);
-                foreach (Guitar gt in response.Data)
-                {
-                    addListItem(gt);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hiba: " + ex, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            fillListView();
         }
         private void idListaBtn_Click(object sender, EventArgs e)
         {
@@ -61,6 +46,12 @@ namespace REST_CLIENT
                     IRestResponse<List<Guitar>> response = client.Execute<List<Guitar>>(request);
                     foreach (Guitar gt in response.Data)
                     {
+                        if (gt == null)
+                        {
+                            MessageBox.Show("Nincs ilyen id", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            fillListView();
+                            break;
+                        }
                         addListItem(gt);
                     }
                 }
@@ -68,6 +59,68 @@ namespace REST_CLIENT
                 {
                     MessageBox.Show("Hiba: " + ex, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+        private void torlesBtn_Click(object sender, EventArgs e)
+        {
+            string id = deleteIdNumeric.Value.ToString();
+
+            if (id == "" || id == "0")
+                MessageBox.Show("Hiba: Nullánál nagyobb id-t kell megadni", "Figyelem!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                try
+                {
+                    var client = new RestClient(URL);
+                    var request = new RestRequest(ROUTE + "/{id}", Method.DELETE);
+                    request.AddParameter("id", id);
+                    IRestResponse response = client.Execute(request);
+                    fillListView();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hiba: " + ex, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void hozzaadBtn_Click(object sender, EventArgs e)
+        {
+            var client = new RestClient(URL);
+            var request = new RestRequest(ROUTE, Method.POST);
+
+            request.RequestFormat = DataFormat.Json;
+
+            request.AddBody(new Guitar
+            {
+                Marka = markaTxtBox.Text,
+                Bundok = (int)bundokNumeric.Value,
+                Forma = formaTxtBox.Text,
+                Hangszedo = hangszedoTxtBox.Text,
+                Hurok = (int)hurokNumeric.Value,
+                Tipus = tipusTxtBox.Text
+            });
+
+            IRestResponse<List<string>> restResponse = client.Execute<List<string>>(request);
+            fillListView();
+        }
+        private void fillListView()
+        {
+            listView.Items.Clear();
+            try
+            {
+                var client = new RestClient(URL);
+                var request = new RestRequest(ROUTE, Method.GET);
+
+                IRestResponse<List<Guitar>> response = client.Execute<List<Guitar>>(request);
+                foreach (Guitar gt in response.Data)
+                {
+                    addListItem(gt);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba: " + ex, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void addListItem(Guitar gt)
@@ -86,6 +139,47 @@ namespace REST_CLIENT
                     continue;
                 listView.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
             }
+        }
+
+        private void modositasBtn_Click(object sender, EventArgs e)
+        {
+            int id = (int)modositasNumeric.Value;
+            if (id == 0)
+                MessageBox.Show("Hiba: Nullánál nagyobb id-t kell megadni", "Figyelem!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                try
+                {
+                    var client = new RestClient(URL);
+                    var request = new RestRequest(ROUTE + "?id=" + id, Method.GET);
+
+                    IRestResponse<List<Guitar>> response = client.Execute<List<Guitar>>(request);
+                    foreach (Guitar gt in response.Data)
+                    {
+                        if (gt == null)
+                        {
+                            MessageBox.Show("Nincs ilyen id", "Figyelem!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            break;
+                        }
+                        else
+                        {
+                            Módosítás form = new Módosítás(id,gt.Marka, gt.Forma, gt.Bundok, gt.Hurok, gt.Tipus, gt.Hangszedo);
+                            form.ShowDialog();
+                            this.Show();
+                            fillListView();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hiba: " + ex, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

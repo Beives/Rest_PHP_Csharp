@@ -34,27 +34,32 @@ namespace REST_CLIENT
             this.modositasBtn = new System.Windows.Forms.Button();
             this.torlesBtn = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.modositasNumeric = new System.Windows.Forms.NumericUpDown();
+            this.idLabel = new System.Windows.Forms.Label();
             this.hurokLabel = new System.Windows.Forms.Label();
-            this.idListaBtn = new System.Windows.Forms.Button();
             this.tipusTxtBox = new System.Windows.Forms.TextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.hurokNumeric = new System.Windows.Forms.NumericUpDown();
             this.hangszedoTxtBox = new System.Windows.Forms.TextBox();
             this.bundokNumeric = new System.Windows.Forms.NumericUpDown();
             this.markaTxtBox = new System.Windows.Forms.TextBox();
-            this.idNumeric = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.formaTxtBox = new System.Windows.Forms.TextBox();
             this.tipusLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.bundokLabel = new System.Windows.Forms.Label();
             this.formaLabel = new System.Windows.Forms.Label();
             this.markaLabel = new System.Windows.Forms.Label();
-            this.idLabel = new System.Windows.Forms.Label();
+            this.idListaBtn = new System.Windows.Forms.Button();
+            this.idNumeric = new System.Windows.Forms.NumericUpDown();
             this.panel2 = new System.Windows.Forms.Panel();
             this.deleteIdNumeric = new System.Windows.Forms.NumericUpDown();
             this.deleteIdLabel = new System.Windows.Forms.Label();
             this.listView = new System.Windows.Forms.ListView();
+            this.exitBtn = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modositasNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hurokNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bundokNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idNumeric)).BeginInit();
             this.panel2.SuspendLayout();
@@ -63,12 +68,13 @@ namespace REST_CLIENT
             // 
             // listaBtn
             // 
-            this.listaBtn.Location = new System.Drawing.Point(480, 332);
+            this.listaBtn.Location = new System.Drawing.Point(347, 332);
             this.listaBtn.Name = "listaBtn";
             this.listaBtn.Size = new System.Drawing.Size(150, 50);
             this.listaBtn.TabIndex = 9;
             this.listaBtn.Text = "Listázás";
             this.listaBtn.UseVisualStyleBackColor = true;
+            this.listaBtn.Click += new System.EventHandler(this.listaBtn_Click);
             // 
             // hozzaadBtn
             // 
@@ -78,15 +84,17 @@ namespace REST_CLIENT
             this.hozzaadBtn.TabIndex = 10;
             this.hozzaadBtn.Text = "Hozzáad";
             this.hozzaadBtn.UseVisualStyleBackColor = true;
+            this.hozzaadBtn.Click += new System.EventHandler(this.hozzaadBtn_Click);
             // 
             // modositasBtn
             // 
-            this.modositasBtn.Location = new System.Drawing.Point(14, 75);
+            this.modositasBtn.Location = new System.Drawing.Point(10, 10);
             this.modositasBtn.Name = "modositasBtn";
             this.modositasBtn.Size = new System.Drawing.Size(75, 23);
             this.modositasBtn.TabIndex = 11;
             this.modositasBtn.Text = "Módosítás";
             this.modositasBtn.UseVisualStyleBackColor = true;
+            this.modositasBtn.Click += new System.EventHandler(this.modositasBtn_Click);
             // 
             // torlesBtn
             // 
@@ -96,30 +104,54 @@ namespace REST_CLIENT
             this.torlesBtn.TabIndex = 12;
             this.torlesBtn.Text = "Törlés";
             this.torlesBtn.UseVisualStyleBackColor = true;
+            this.torlesBtn.Click += new System.EventHandler(this.torlesBtn_Click);
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.panel1);
             this.panel.Controls.Add(this.hurokLabel);
-            this.panel.Controls.Add(this.idListaBtn);
             this.panel.Controls.Add(this.tipusTxtBox);
-            this.panel.Controls.Add(this.numericUpDown1);
+            this.panel.Controls.Add(this.hurokNumeric);
             this.panel.Controls.Add(this.hangszedoTxtBox);
             this.panel.Controls.Add(this.bundokNumeric);
             this.panel.Controls.Add(this.markaTxtBox);
-            this.panel.Controls.Add(this.idNumeric);
-            this.panel.Controls.Add(this.textBox1);
+            this.panel.Controls.Add(this.formaTxtBox);
             this.panel.Controls.Add(this.tipusLabel);
             this.panel.Controls.Add(this.label5);
             this.panel.Controls.Add(this.bundokLabel);
             this.panel.Controls.Add(this.formaLabel);
             this.panel.Controls.Add(this.markaLabel);
-            this.panel.Controls.Add(this.idLabel);
             this.panel.Controls.Add(this.hozzaadBtn);
-            this.panel.Controls.Add(this.modositasBtn);
             this.panel.Location = new System.Drawing.Point(12, 21);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(297, 289);
             this.panel.TabIndex = 13;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.modositasBtn);
+            this.panel1.Controls.Add(this.modositasNumeric);
+            this.panel1.Controls.Add(this.idLabel);
+            this.panel1.Location = new System.Drawing.Point(14, 13);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(269, 42);
+            this.panel1.TabIndex = 27;
+            // 
+            // modositasNumeric
+            // 
+            this.modositasNumeric.Location = new System.Drawing.Point(158, 10);
+            this.modositasNumeric.Name = "modositasNumeric";
+            this.modositasNumeric.Size = new System.Drawing.Size(100, 23);
+            this.modositasNumeric.TabIndex = 26;
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(134, 12);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(18, 15);
+            this.idLabel.TabIndex = 12;
+            this.idLabel.Text = "ID";
             // 
             // hurokLabel
             // 
@@ -130,15 +162,6 @@ namespace REST_CLIENT
             this.hurokLabel.TabIndex = 25;
             this.hurokLabel.Text = "Húrok száma";
             // 
-            // idListaBtn
-            // 
-            this.idListaBtn.Location = new System.Drawing.Point(14, 14);
-            this.idListaBtn.Name = "idListaBtn";
-            this.idListaBtn.Size = new System.Drawing.Size(105, 40);
-            this.idListaBtn.TabIndex = 15;
-            this.idListaBtn.Text = "Lekérés ID-vel";
-            this.idListaBtn.UseVisualStyleBackColor = true;
-            // 
             // tipusTxtBox
             // 
             this.tipusTxtBox.Location = new System.Drawing.Point(172, 247);
@@ -146,12 +169,12 @@ namespace REST_CLIENT
             this.tipusTxtBox.Size = new System.Drawing.Size(100, 23);
             this.tipusTxtBox.TabIndex = 24;
             // 
-            // numericUpDown1
+            // hurokNumeric
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(173, 211);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(100, 23);
-            this.numericUpDown1.TabIndex = 23;
+            this.hurokNumeric.Location = new System.Drawing.Point(173, 211);
+            this.hurokNumeric.Name = "hurokNumeric";
+            this.hurokNumeric.Size = new System.Drawing.Size(100, 23);
+            this.hurokNumeric.TabIndex = 23;
             // 
             // hangszedoTxtBox
             // 
@@ -174,19 +197,12 @@ namespace REST_CLIENT
             this.markaTxtBox.Size = new System.Drawing.Size(100, 23);
             this.markaTxtBox.TabIndex = 20;
             // 
-            // idNumeric
+            // formaTxtBox
             // 
-            this.idNumeric.Location = new System.Drawing.Point(173, 23);
-            this.idNumeric.Name = "idNumeric";
-            this.idNumeric.Size = new System.Drawing.Size(100, 23);
-            this.idNumeric.TabIndex = 19;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(173, 101);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 18;
+            this.formaTxtBox.Location = new System.Drawing.Point(173, 101);
+            this.formaTxtBox.Name = "formaTxtBox";
+            this.formaTxtBox.Size = new System.Drawing.Size(100, 23);
+            this.formaTxtBox.TabIndex = 18;
             // 
             // tipusLabel
             // 
@@ -233,21 +249,29 @@ namespace REST_CLIENT
             this.markaLabel.TabIndex = 13;
             this.markaLabel.Text = "Márka";
             // 
-            // idLabel
+            // idListaBtn
             // 
-            this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(149, 27);
-            this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(18, 15);
-            this.idLabel.TabIndex = 12;
-            this.idLabel.Text = "ID";
+            this.idListaBtn.Location = new System.Drawing.Point(532, 332);
+            this.idListaBtn.Name = "idListaBtn";
+            this.idListaBtn.Size = new System.Drawing.Size(123, 50);
+            this.idListaBtn.TabIndex = 15;
+            this.idListaBtn.Text = "Lekérés ID-vel";
+            this.idListaBtn.UseVisualStyleBackColor = true;
+            this.idListaBtn.Click += new System.EventHandler(this.idListaBtn_Click);
+            // 
+            // idNumeric
+            // 
+            this.idNumeric.Location = new System.Drawing.Point(661, 346);
+            this.idNumeric.Name = "idNumeric";
+            this.idNumeric.Size = new System.Drawing.Size(100, 23);
+            this.idNumeric.TabIndex = 19;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.deleteIdNumeric);
             this.panel2.Controls.Add(this.deleteIdLabel);
             this.panel2.Controls.Add(this.torlesBtn);
-            this.panel2.Location = new System.Drawing.Point(12, 332);
+            this.panel2.Location = new System.Drawing.Point(12, 319);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(297, 50);
             this.panel2.TabIndex = 14;
@@ -277,20 +301,36 @@ namespace REST_CLIENT
             this.listView.TabIndex = 15;
             this.listView.UseCompatibleStateImageBehavior = false;
             // 
+            // exitBtn
+            // 
+            this.exitBtn.Location = new System.Drawing.Point(12, 376);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(75, 23);
+            this.exitBtn.TabIndex = 20;
+            this.exitBtn.Text = "Kilépés";
+            this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.listView);
+            this.Controls.Add(this.idListaBtn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.listaBtn);
+            this.Controls.Add(this.idNumeric);
             this.Name = "Form2";
             this.Text = "Logged in window";
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.modositasNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hurokNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bundokNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idNumeric)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -309,12 +349,12 @@ namespace REST_CLIENT
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Label hurokLabel;
         private System.Windows.Forms.TextBox tipusTxtBox;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown hurokNumeric;
         private System.Windows.Forms.TextBox hangszedoTxtBox;
         private System.Windows.Forms.NumericUpDown bundokNumeric;
         private System.Windows.Forms.TextBox markaTxtBox;
         private System.Windows.Forms.NumericUpDown idNumeric;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox formaTxtBox;
         private System.Windows.Forms.Label tipusLabel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label bundokLabel;
@@ -326,5 +366,8 @@ namespace REST_CLIENT
         private System.Windows.Forms.Label deleteIdLabel;
         private System.Windows.Forms.Button idListaBtn;
         private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.NumericUpDown modositasNumeric;
+        private System.Windows.Forms.Button exitBtn;
     }
 }
